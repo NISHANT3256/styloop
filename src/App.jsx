@@ -6,7 +6,7 @@ import Features from './components/Features'
 import ProductGallery from './components/ProductGallery'
 import CustomDesigner from './components/CustomDesigner'
 import HowItWorks from './components/HowItWorks'
-import Testimonials from './components/Testimonials'
+import AboutUs from './components/AboutUs'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 
@@ -87,6 +87,15 @@ function App() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <HowItWorks />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <AboutUs />
         </motion.div>
         
         <motion.div
