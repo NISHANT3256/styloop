@@ -51,19 +51,19 @@ function App() {
       {/* Enhanced 3D Background Elements */}
       <div className="fixed inset-0 bg-gradient-to-br from-red-950/20 via-transparent to-red-900/10 pointer-events-none"></div>
       
-      {/* Animated 3D Spheres */}
-      <div className="fixed top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-float pointer-events-none"></div>
-      <div className="fixed top-40 right-20 w-80 h-80 bg-red-600/15 rounded-full blur-3xl animate-float-reverse pointer-events-none" style={{ animationDelay: '1s' }}></div>
-      <div className="fixed bottom-20 left-1/4 w-72 h-72 bg-red-700/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }}></div>
-      <div className="fixed top-1/2 right-10 w-64 h-64 bg-red-500/15 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: '3s' }}></div>
+      {/* Animated 3D Spheres - White */}
+      <div className="fixed top-20 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float pointer-events-none"></div>
+      <div className="fixed top-40 right-20 w-80 h-80 bg-white/8 rounded-full blur-3xl animate-float-reverse pointer-events-none" style={{ animationDelay: '1s' }}></div>
+      <div className="fixed bottom-20 left-1/4 w-72 h-72 bg-white/6 rounded-full blur-3xl animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }}></div>
+      <div className="fixed top-1/2 right-10 w-64 h-64 bg-white/8 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: '3s' }}></div>
       
       {/* 3D Rotating Cubes */}
       <div className="fixed top-1/4 left-1/3 w-32 h-32 bg-3d-cube animate-rotate-3d opacity-30 pointer-events-none"></div>
       <div className="fixed bottom-1/3 right-1/4 w-40 h-40 bg-3d-cube animate-rotate-3d opacity-20 pointer-events-none" style={{ animationDelay: '5s' }}></div>
       
-      {/* Glowing Orbs */}
-      <div className="fixed top-1/3 right-1/3 w-24 h-24 bg-red-500/30 rounded-full animate-pulse-glow pointer-events-none"></div>
-      <div className="fixed bottom-1/4 left-1/2 w-20 h-20 bg-red-600/25 rounded-full animate-pulse-glow pointer-events-none" style={{ animationDelay: '1.5s' }}></div>
+      {/* Glowing Orbs - White */}
+      <div className="fixed top-1/3 right-1/3 w-24 h-24 bg-white/20 rounded-full animate-pulse-glow pointer-events-none"></div>
+      <div className="fixed bottom-1/4 left-1/2 w-20 h-20 bg-white/15 rounded-full animate-pulse-glow pointer-events-none" style={{ animationDelay: '1.5s' }}></div>
       
       {/* Gradient Mesh */}
       <div className="fixed inset-0 bg-gradient-to-tr from-red-950/5 via-transparent to-red-900/5 pointer-events-none"></div>
