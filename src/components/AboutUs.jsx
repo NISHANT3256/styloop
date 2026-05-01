@@ -94,12 +94,15 @@ const AboutUs = () => {
 
                 {/* Founders Info */}
                 <div className="flex-1 text-center md:text-left">
-                  <h4 className="text-3xl font-bold text-white mb-4">The Dream Team</h4>
+                  <h4 className="text-3xl font-bold text-white mb-2">
+                    <span className="text-gradient">Prateek</span> & <span className="text-gradient">Nishant</span>
+                  </h4>
+                  <p className="text-red-500 font-semibold mb-6">Co-Founders, Styloops</p>
                   <p className="text-gray-300 leading-relaxed mb-6">
-                    We're two friends from <span className="text-red-500 font-semibold">Kanpur, Uttar Pradesh</span> who share a passion for creativity and entrepreneurship. What started as a simple idea has grown into Styloops - a platform where anyone can turn their imagination into wearable art.
+                    <span className="text-red-500 font-semibold">Prateek</span> started this journey with a vision to revolutionize custom t-shirt printing in India. Joined by his friend <span className="text-red-500 font-semibold">Nishant</span>, together we're two friends from <span className="text-red-500 font-semibold">Kanpur, Uttar Pradesh</span> who share a passion for creativity and entrepreneurship.
                   </p>
                   <p className="text-gray-300 leading-relaxed mb-6">
-                    From our base in <span className="text-red-500 font-semibold">Ratanpur, Panki</span>, we're committed to bringing premium custom t-shirt printing to every corner of India. We believe in quality, creativity, and making our customers' visions come to life.
+                    What started as Prateek's simple idea has grown into Styloops - a platform where anyone can turn their imagination into wearable art. From our base in <span className="text-red-500 font-semibold">Ratanpur, Panki</span>, we're committed to bringing premium custom t-shirt printing to every corner of India.
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                     <div className="glass-effect px-4 py-2 rounded-full border border-red-500/30">
