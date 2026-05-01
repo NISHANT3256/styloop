@@ -24,12 +24,12 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'glass-dark shadow-2xl shadow-neon-pink/10 neon-border' : 'bg-transparent'
+      isScrolled ? 'glass-dark shadow-2xl shadow-red-500/10 neon-border' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-2">
-            <Sparkles className="w-8 h-8 text-neon-pink animate-pulse" />
+            <Sparkles className="w-8 h-8 text-red-500 animate-pulse" />
             <span className="text-2xl font-bold text-gradient neon-glow">Styloops</span>
           </div>
 
@@ -38,12 +38,12 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-neon-pink font-medium transition-all duration-200 hover:scale-110"
+                className="text-gray-300 hover:text-red-500 font-medium transition-all duration-200 hover:scale-110"
               >
                 {link.name}
               </a>
             ))}
-            <button className="bg-gradient-to-r from-neon-pink to-neon-purple text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-neon-pink/50 hover:scale-105 transition-all duration-200 flex items-center space-x-2 neon-border animate-glow">
+            <button className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-200 flex items-center space-x-2 neon-border animate-glow">
               <ShoppingCart className="w-4 h-4" />
               <span>Order Now</span>
             </button>
@@ -65,13 +65,13 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-gray-300 hover:text-neon-pink font-medium transition-colors"
+                className="block text-gray-300 hover:text-red-500 font-medium transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <button className="w-full bg-gradient-to-r from-neon-pink to-neon-purple text-white px-6 py-2.5 rounded-full font-semibold flex items-center justify-center space-x-2 neon-border">
+            <button className="w-full bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold flex items-center justify-center space-x-2 neon-border">
               <ShoppingCart className="w-4 h-4" />
               <span>Order Now</span>
             </button>
