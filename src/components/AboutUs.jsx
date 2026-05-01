@@ -79,29 +79,41 @@ const AboutUs = () => {
             <p className="text-gray-300 text-lg">Two friends with a shared vision from Kanpur</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="glass-dark p-8 rounded-2xl border border-white/10 hover:neon-border transition-all duration-500 group text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-red-500 to-purple-600 flex items-center justify-center relative group-hover:scale-110 transition-transform">
-                <Users className="w-16 h-16 text-white" />
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-600 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
-              </div>
-              <h4 className="text-2xl font-bold text-white mb-2">Co-Founder</h4>
-              <p className="text-red-500 font-semibold mb-4">Creative Director</p>
-              <p className="text-gray-300 leading-relaxed">
-                Passionate about design and innovation, bringing creative ideas to life through custom printing.
-              </p>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="glass-dark p-8 rounded-2xl border border-white/10 hover:neon-border transition-all duration-500 group">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                {/* Founders Photo */}
+                <div className="relative group-hover:scale-105 transition-transform duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                  <img 
+                    src="/images/founders.jpeg" 
+                    alt="Styloops Founders" 
+                    className="relative w-80 h-80 object-cover rounded-2xl border-4 border-white/10 shadow-2xl"
+                  />
+                </div>
 
-            <div className="glass-dark p-8 rounded-2xl border border-white/10 hover:neon-border transition-all duration-500 group text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 to-red-600 flex items-center justify-center relative group-hover:scale-110 transition-transform">
-                <Users className="w-16 h-16 text-white" />
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-red-600 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                {/* Founders Info */}
+                <div className="flex-1 text-center md:text-left">
+                  <h4 className="text-3xl font-bold text-white mb-4">The Dream Team</h4>
+                  <p className="text-gray-300 leading-relaxed mb-6">
+                    We're two friends from <span className="text-red-500 font-semibold">Kanpur, Uttar Pradesh</span> who share a passion for creativity and entrepreneurship. What started as a simple idea has grown into Styloops - a platform where anyone can turn their imagination into wearable art.
+                  </p>
+                  <p className="text-gray-300 leading-relaxed mb-6">
+                    From our base in <span className="text-red-500 font-semibold">Ratanpur, Panki</span>, we're committed to bringing premium custom t-shirt printing to every corner of India. We believe in quality, creativity, and making our customers' visions come to life.
+                  </p>
+                  <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <div className="glass-effect px-4 py-2 rounded-full border border-red-500/30">
+                      <span className="text-red-500 font-semibold">Creative Vision</span>
+                    </div>
+                    <div className="glass-effect px-4 py-2 rounded-full border border-purple-500/30">
+                      <span className="text-purple-500 font-semibold">Quality Focused</span>
+                    </div>
+                    <div className="glass-effect px-4 py-2 rounded-full border border-red-500/30">
+                      <span className="text-red-500 font-semibold">Customer First</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h4 className="text-2xl font-bold text-white mb-2">Co-Founder</h4>
-              <p className="text-red-500 font-semibold mb-4">Operations Lead</p>
-              <p className="text-gray-300 leading-relaxed">
-                Dedicated to delivering quality and ensuring every customer gets the best experience possible.
-              </p>
             </div>
           </div>
         </div>
