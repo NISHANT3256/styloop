@@ -12,7 +12,7 @@ const ProductGallery = () => {
       id: 1, 
       name: 'Neon Dreams', 
       category: 'artistic', 
-      price: 29.99, 
+      price: 799, 
       color: 'from-neon-pink via-purple-600 to-neon-purple',
       bubbles: [
         { color: 'from-pink-500 to-purple-600', position: 'top-0 -right-8' },
@@ -24,7 +24,7 @@ const ProductGallery = () => {
       id: 2, 
       name: 'Cyber Punk', 
       category: 'typography', 
-      price: 24.99, 
+      price: 649, 
       color: 'from-neon-blue via-cyan-500 to-blue-600',
       bubbles: [
         { color: 'from-cyan-400 to-blue-600', position: 'top-2 -right-6' },
@@ -36,7 +36,7 @@ const ProductGallery = () => {
       id: 3, 
       name: 'Electric Wave', 
       category: 'minimalist', 
-      price: 27.99, 
+      price: 749, 
       color: 'from-yellow-400 via-orange-500 to-red-500',
       bubbles: [
         { color: 'from-orange-400 to-red-500', position: 'top-4 -left-6' },
@@ -48,7 +48,7 @@ const ProductGallery = () => {
       id: 4, 
       name: 'Retro Future', 
       category: 'trending', 
-      price: 32.99, 
+      price: 899, 
       color: 'from-purple-600 via-pink-500 to-rose-500',
       bubbles: [
         { color: 'from-purple-500 to-pink-600', position: 'top-6 -right-10' },
@@ -60,7 +60,7 @@ const ProductGallery = () => {
       id: 5, 
       name: 'Toxic Glow', 
       category: 'artistic', 
-      price: 29.99, 
+      price: 799, 
       color: 'from-green-400 via-emerald-500 to-teal-600',
       bubbles: [
         { color: 'from-emerald-400 to-teal-600', position: 'top-8 -right-6' },
@@ -72,7 +72,7 @@ const ProductGallery = () => {
       id: 6, 
       name: 'Fire Storm', 
       category: 'typography', 
-      price: 26.99, 
+      price: 699, 
       color: 'from-red-500 via-orange-500 to-yellow-400',
       bubbles: [
         { color: 'from-red-600 to-orange-500', position: 'top-4 -left-8' },
@@ -84,7 +84,7 @@ const ProductGallery = () => {
       id: 7, 
       name: 'Ocean Deep', 
       category: 'minimalist', 
-      price: 28.99, 
+      price: 799, 
       color: 'from-blue-600 via-indigo-600 to-purple-700',
       bubbles: [
         { color: 'from-blue-500 to-indigo-600', position: 'top-2 -right-8' },
@@ -96,7 +96,7 @@ const ProductGallery = () => {
       id: 8, 
       name: 'Midnight Vibe', 
       category: 'trending', 
-      price: 31.99, 
+      price: 849, 
       color: 'from-violet-600 via-purple-600 to-fuchsia-600',
       bubbles: [
         { color: 'from-violet-500 to-purple-600', position: 'top-0 -right-6' },
@@ -208,7 +208,7 @@ const ProductGallery = () => {
                     <h3 className="text-xl font-bold text-white">{product.name}</h3>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gradient">${product.price}</span>
+                    <span className="text-2xl font-bold text-gradient">₹{product.price}</span>
                     <button className="bg-gradient-to-r from-neon-pink to-neon-purple text-white p-3 rounded-full hover:shadow-lg hover:shadow-neon-pink/50 hover:scale-110 transition-all duration-300 neon-border">
                       <ShoppingCart className="w-5 h-5" />
                     </button>

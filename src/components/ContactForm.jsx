@@ -63,8 +63,8 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Phone</h4>
-                    <p className="text-gray-300 hover:text-neon-blue transition-colors">+1 (555) 123-4567</p>
-                    <p className="text-gray-300 hover:text-neon-blue transition-colors">Mon-Fri 9am-6pm EST</p>
+                    <p className="text-gray-300 hover:text-neon-blue transition-colors">+91 9519732776</p>
+                    <p className="text-gray-300 hover:text-neon-blue transition-colors">Mon-Fri 9am-6pm IST</p>
                   </div>
                 </div>
 
@@ -74,8 +74,8 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Address</h4>
-                    <p className="text-gray-300 hover:text-neon-green transition-colors">123 Fashion Street</p>
-                    <p className="text-gray-300 hover:text-neon-green transition-colors">New York, NY 10001</p>
+                    <p className="text-gray-300 hover:text-neon-green transition-colors">Ratanpur, Panki</p>
+                    <p className="text-gray-300 hover:text-neon-green transition-colors">Kanpur, Uttar Pradesh</p>
                   </div>
                 </div>
               </div>
