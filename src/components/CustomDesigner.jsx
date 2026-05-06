@@ -1,9 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Upload, Type, Image as ImageIcon, Sparkles, Download } from 'lucide-react'
 
 const CustomDesigner = () => {
   const [selectedColor, setSelectedColor] = useState('#ffffff')
   const [selectedSize, setSelectedSize] = useState('M')
+  const [uploadedImage, setUploadedImage] = useState(null)
+  const [customText, setCustomText] = useState('')
+  const fileInputRef = useRef(null)
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setUploadedImage(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  }
+
+  const handleDrop = (e) => {
+    e.preventDefault()
+    const file = e.dataTransfer.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setUploadedImage(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   const colors = [
     { name: 'White', value: '#ffffff' },
@@ -37,13 +71,30 @@ const CustomDesigner = () => {
             <div className="sticky top-24">
               <div className="glass-dark rounded-3xl p-12 shadow-xl border border-white/10 hover:neon-border transition-all duration-500">
                 <div 
-                  className="relative mx-auto w-full max-w-md aspect-square rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-300 neon-border"
+                  className="relative mx-auto w-full max-w-md aspect-square rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-300 neon-border overflow-hidden"
                   style={{ backgroundColor: selectedColor }}
                 >
-                  <div className="text-center space-y-4">
-                    <Sparkles className="w-16 h-16 mx-auto text-gray-400" />
-                    <p className="text-gray-500 font-medium">Your design will appear here</p>
-                  </div>
+                  {uploadedImage ? (
+                    <img 
+                      src={uploadedImage} 
+                      alt="Uploaded design" 
+                      className="max-w-[80%] max-h-[80%] object-contain"
+                    />
+                  ) : (
+                    <div className="text-center space-y-4">
+                      <Sparkles className="w-16 h-16 mx-auto text-gray-400" />
+                      <p className="text-gray-500 font-medium">Your design will appear here</p>
+                    </div>
+                  )}
+                  
+                  {customText && (
+                    <div 
+                      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-2xl font-bold"
+                      style={{ color: selectedColor === '#ffffff' ? '#000000' : '#ffffff' }}
+                    >
+                      {customText}
+                    </div>
+                  )}
                   
                   <div className="absolute -bottom-4 -right-4 glass-dark px-6 py-3 rounded-full shadow-lg border border-white/20">
                     <span className="font-bold text-white">Size: {selectedSize}</span>
@@ -56,14 +107,30 @@ const CustomDesigner = () => {
           <div className="space-y-8">
             <div className="glass-dark p-8 rounded-2xl border border-white/10 hover:neon-border transition-all duration-500">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
-                <Upload className="w-6 h-6 mr-3 text-neon-pink animate-pulse" />
+                <Upload className="w-6 h-6 mr-3 text-red-500 animate-pulse" />
                 Upload Your Design
               </h3>
               
-              <div className="border-2 border-dashed border-white/30 rounded-xl p-12 text-center hover:border-neon-pink hover:neon-border transition-all duration-300 cursor-pointer group">
-                <ImageIcon className="w-16 h-16 mx-auto text-gray-400 group-hover:text-neon-pink group-hover:scale-110 transition-all duration-300 mb-4" />
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileUpload}
+                accept="image/*"
+                className="hidden"
+              />
+              
+              <div 
+                onClick={handleUploadClick}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                className="border-2 border-dashed border-white/30 rounded-xl p-12 text-center hover:border-red-500 hover:neon-border transition-all duration-300 cursor-pointer group"
+              >
+                <ImageIcon className="w-16 h-16 mx-auto text-gray-400 group-hover:text-red-500 group-hover:scale-110 transition-all duration-300 mb-4" />
                 <p className="text-gray-300 font-medium mb-2">Click to upload or drag and drop</p>
                 <p className="text-sm text-gray-500">PNG, JPG, SVG up to 10MB</p>
+                {uploadedImage && (
+                  <p className="text-green-400 text-sm mt-2">✓ Image uploaded successfully!</p>
+                )}
               </div>
             </div>
 
@@ -76,7 +143,9 @@ const CustomDesigner = () => {
               <input
                 type="text"
                 placeholder="Enter your text here..."
-                className="w-full px-6 py-4 rounded-xl border-2 border-white/20 bg-black/40 text-white focus:border-neon-pink focus:outline-none text-lg transition-all duration-300 focus:scale-105 placeholder-gray-500"
+                value={customText}
+                onChange={(e) => setCustomText(e.target.value)}
+                className="w-full px-6 py-4 rounded-xl border-2 border-white/20 bg-black/40 text-white focus:border-red-500 focus:outline-none text-lg transition-all duration-300 focus:scale-105 placeholder-gray-500"
               />
               
               <div className="grid grid-cols-3 gap-4 mt-4">
