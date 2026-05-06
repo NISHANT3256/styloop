@@ -18,10 +18,19 @@ function App() {
   const [showAdmin, setShowAdmin] = useState(false)
 
   useEffect(() => {
-    // Check if URL contains /admin
-    if (window.location.pathname === '/admin' || window.location.hash === '#admin') {
-      setShowAdmin(true)
+    // Check if URL contains #admin
+    const checkAdminHash = () => {
+      if (window.location.hash === '#admin') {
+        setShowAdmin(true)
+      } else {
+        setShowAdmin(false)
+      }
     }
+    
+    checkAdminHash()
+    window.addEventListener('hashchange', checkAdminHash)
+    
+    return () => window.removeEventListener('hashchange', checkAdminHash)
   }, [])
 
   useEffect(() => {
