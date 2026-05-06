@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import Checkout from './Checkout'
 
 const Cart = () => {
   const { 
@@ -11,12 +12,15 @@ const Cart = () => {
     isCartOpen, 
     setIsCartOpen 
   } = useCart()
-
-  if (!isCartOpen) return null
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
 
   return (
     <>
-      <div 
+      <Checkout isOpen={isCheckoutOpen} onClose={() => setIsCheckoutOpen(false)} />
+      
+      {isCartOpen && (
+      <>
+        <div 
         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
         onClick={() => setIsCartOpen(false)}
       ></div>
@@ -108,7 +112,13 @@ const Cart = () => {
                 <span className="text-gray-400 text-lg">Subtotal</span>
                 <span className="text-white text-2xl font-bold">₹{getCartTotal()}</span>
               </div>
-              <button className="w-full bg-gradient-to-r from-red-600 to-red-500 text-white py-4 rounded-full font-bold text-lg hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 neon-border">
+              <button 
+                onClick={() => {
+                  setIsCheckoutOpen(true)
+                  setIsCartOpen(false)
+                }}
+                className="w-full bg-gradient-to-r from-red-600 to-red-500 text-white py-4 rounded-full font-bold text-lg hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 neon-border"
+              >
                 Proceed to Checkout
               </button>
               <p className="text-gray-500 text-xs text-center mt-3">
@@ -118,6 +128,8 @@ const Cart = () => {
           )}
         </div>
       </div>
+      </>
+      )}
     </>
   )
 }

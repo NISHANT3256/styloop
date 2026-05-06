@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import { Upload, Type, Image as ImageIcon, Sparkles, Download } from 'lucide-react'
+import { Upload, Type, Image as ImageIcon, Sparkles, Download, ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const CustomDesigner = () => {
   const [selectedColor, setSelectedColor] = useState('#ffffff')
@@ -7,6 +8,19 @@ const CustomDesigner = () => {
   const [uploadedImage, setUploadedImage] = useState(null)
   const [customText, setCustomText] = useState('')
   const fileInputRef = useRef(null)
+  const { addToCart } = useCart()
+
+  const handleAddToCart = () => {
+    const customProduct = {
+      id: 'custom-' + Date.now(),
+      name: 'Custom Design T-Shirt',
+      price: 799,
+      size: selectedSize,
+      color: selectedColor,
+      icon: '🎨'
+    }
+    addToCart(customProduct, uploadedImage)
+  }
 
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0]
@@ -214,10 +228,14 @@ const CustomDesigner = () => {
             </div>
 
             <div className="flex gap-4">
-              <button className="flex-1 bg-gradient-to-r from-red-600 to-neon-pink text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 neon-border animate-glow">
-                Add to Cart - $29.99
+              <button 
+                onClick={handleAddToCart}
+                className="flex-1 bg-gradient-to-r from-red-600 to-red-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 neon-border animate-glow flex items-center justify-center gap-3"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart - ₹799
               </button>
-              <button className="glass-effect text-white px-6 py-4 rounded-xl font-bold border-2 border-white/20 hover:border-neon-pink hover:scale-110 transition-all duration-300">
+              <button className="glass-effect text-white px-6 py-4 rounded-xl font-bold border-2 border-white/20 hover:border-red-500 hover:scale-110 transition-all duration-300">
                 <Download className="w-6 h-6" />
               </button>
             </div>
