@@ -10,10 +10,19 @@ import AboutUs from './components/AboutUs'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import Cart from './components/Cart'
+import AdminDashboard from './components/AdminDashboard'
 
 function App() {
   const [bgColor, setBgColor] = useState('#000000')
   const { scrollYProgress } = useScroll()
+  const [showAdmin, setShowAdmin] = useState(false)
+
+  useEffect(() => {
+    // Check if URL contains /admin
+    if (window.location.pathname === '/admin' || window.location.hash === '#admin') {
+      setShowAdmin(true)
+    }
+  }, [])
 
   useEffect(() => {
     // Update background color based on scroll position
@@ -40,6 +49,16 @@ function App() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Show admin dashboard if URL is /admin or #admin
+  if (showAdmin) {
+    return (
+      <>
+        <AdminDashboard />
+        <Cart />
+      </>
+    )
+  }
 
   return (
     <div 
