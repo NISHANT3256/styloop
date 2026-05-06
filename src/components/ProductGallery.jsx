@@ -1,9 +1,35 @@
-import React, { useState } from 'react'
-import { Heart, ShoppingCart, Eye, Sparkles, Zap, Star } from 'lucide-react'
+import React, { useState, useRef } from 'react'
+import { Heart, ShoppingCart, Eye, Sparkles, Zap, Star, Upload } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const ProductGallery = () => {
   const [activeCategory, setActiveCategory] = useState('all')
   const [hoveredProduct, setHoveredProduct] = useState(null)
+  const [uploadingFor, setUploadingFor] = useState(null)
+  const fileInputRef = useRef(null)
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (product) => {
+    addToCart(product)
+  }
+
+  const handleUploadDesign = (product) => {
+    setUploadingFor(product)
+    fileInputRef.current?.click()
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file && uploadingFor) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        addToCart(uploadingFor, reader.result)
+        setUploadingFor(null)
+      }
+      reader.readAsDataURL(file)
+    }
+    e.target.value = ''
+  }
 
   const categories = ['all', 'trending', 'minimalist', 'artistic', 'typography']
 
@@ -112,6 +138,13 @@ const ProductGallery = () => {
 
   return (
     <section id="gallery" className="py-20 bg-black relative overflow-hidden">
+      <input 
+        type="file" 
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        className="hidden"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-black to-black pointer-events-none"></div>
       <div className="absolute top-20 left-10 w-96 h-96 bg-neon-pink/10 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
@@ -203,14 +236,28 @@ const ProductGallery = () => {
                 </div>
 
                 <div className="p-6 bg-black/60 backdrop-blur-xl border-t border-white/10">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-3">
                     <Zap className="w-4 h-4 text-neon-yellow animate-pulse" />
                     <h3 className="text-xl font-bold text-white">{product.name}</h3>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-3">
                     <span className="text-2xl font-bold text-gradient">₹{product.price}</span>
-                    <button className="bg-gradient-to-r from-neon-pink to-neon-purple text-white p-3 rounded-full hover:shadow-lg hover:shadow-neon-pink/50 hover:scale-110 transition-all duration-300 neon-border">
-                      <ShoppingCart className="w-5 h-5" />
+                  </div>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={() => handleAddToCart(product)}
+                      className="flex-1 bg-gradient-to-r from-red-600 to-red-500 text-white py-2.5 px-4 rounded-full hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 neon-border font-semibold text-sm flex items-center justify-center gap-2"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Add to Cart
+                    </button>
+                    <button 
+                      onClick={() => handleUploadDesign(product)}
+                      className="bg-gradient-to-r from-purple-600 to-purple-500 text-white py-2.5 px-4 rounded-full hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 border border-purple-400/30 font-semibold text-sm flex items-center justify-center gap-2"
+                      title="Upload your own design"
+                    >
+                      <Upload className="w-4 h-4" />
+                      Custom
                     </button>
                   </div>
                 </div>

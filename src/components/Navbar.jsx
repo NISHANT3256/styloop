@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X, ShoppingCart, Sparkles } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { getCartCount, setIsCartOpen } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +45,17 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-200 flex items-center space-x-2 neon-border animate-glow">
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 transition-all duration-200 flex items-center space-x-2 neon-border animate-glow relative"
+            >
               <ShoppingCart className="w-4 h-4" />
-              <span>Order Now</span>
+              <span>Cart</span>
+              {getCartCount() > 0 && (
+                <span className="absolute -top-2 -right-2 bg-white text-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center animate-pulse">
+                  {getCartCount()}
+                </span>
+              )}
             </button>
           </div>
 
@@ -71,9 +81,15 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="w-full bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold flex items-center justify-center space-x-2 neon-border">
+            <button 
+              onClick={() => {
+                setIsCartOpen(true)
+                setIsMobileMenuOpen(false)
+              }}
+              className="w-full bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-2.5 rounded-full font-semibold flex items-center justify-center space-x-2 neon-border relative"
+            >
               <ShoppingCart className="w-4 h-4" />
-              <span>Order Now</span>
+              <span>Cart {getCartCount() > 0 && `(${getCartCount()})`}</span>
             </button>
           </div>
         </div>

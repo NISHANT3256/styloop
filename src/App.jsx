@@ -9,6 +9,7 @@ import HowItWorks from './components/HowItWorks'
 import AboutUs from './components/AboutUs'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
+import Cart from './components/Cart'
 
 function App() {
   const [bgColor, setBgColor] = useState('#000000')
@@ -129,6 +130,8 @@ function App() {
         
         <Footer />
       </div>
+      
+      <Cart />
     </div>
   )
 }
