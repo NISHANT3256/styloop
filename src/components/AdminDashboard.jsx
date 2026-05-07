@@ -7,6 +7,7 @@ const AdminDashboard = () => {
   const [contacts, setContacts] = useState([])
   const [selectedContact, setSelectedContact] = useState(null)
   const [activeTab, setActiveTab] = useState('orders') // 'orders' or 'contacts'
+  const [previewImage, setPreviewImage] = useState(null)
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
@@ -285,12 +286,16 @@ const AdminDashboard = () => {
                     <div className="space-y-3">
                       {selectedOrder.items.map((item, index) => (
                         <div key={index} className="flex gap-3 p-3 bg-white/5 rounded-lg">
-                          <div className="w-16 h-16 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+                          <div 
+                            className={`w-16 h-16 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0 ${item.customDesign ? 'cursor-pointer hover:ring-2 hover:ring-red-500 transition-all' : ''}`}
+                            onClick={() => item.customDesign && setPreviewImage(item.customDesign)}
+                          >
                             {item.customDesign ? (
                               <img 
                                 src={item.customDesign} 
                                 alt="Custom design" 
                                 className="w-full h-full object-cover"
+                                title="Click to view full size"
                               />
                             ) : (
                               <span className="text-2xl">{item.icon}</span>
@@ -454,6 +459,30 @@ const AdminDashboard = () => {
               </div>
             </div>
           )
+        )}
+
+        {/* Image Preview Modal */}
+        {previewImage && (
+          <div 
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setPreviewImage(null)}
+          >
+            <div className="relative max-w-4xl w-full">
+              <button
+                onClick={() => setPreviewImage(null)}
+                className="absolute -top-12 right-0 text-white hover:text-red-500 transition-colors text-lg font-bold"
+              >
+                ✕ Close
+              </button>
+              <img 
+                src={previewImage} 
+                alt="Custom design preview" 
+                className="w-full h-auto max-h-[80vh] object-contain rounded-xl border-2 border-white/20"
+                onClick={(e) => e.stopPropagation()}
+              />
+              <p className="text-center text-gray-400 mt-4">Click outside to close</p>
+            </div>
+          </div>
         )}
       </div>
     </div>
