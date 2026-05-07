@@ -8,10 +8,37 @@ const ContactForm = () => {
     phone: '',
     message: ''
   })
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    
+    // Create contact message object
+    const contactMessage = {
+      ...formData,
+      messageId: 'MSG-' + Date.now(),
+      submittedAt: new Date().toISOString(),
+      status: 'new'
+    }
+    
+    // Save to localStorage
+    const existingMessages = JSON.parse(localStorage.getItem('styloops-contacts') || '[]')
+    existingMessages.push(contactMessage)
+    localStorage.setItem('styloops-contacts', JSON.stringify(existingMessages))
+    
+    // Show success message
+    setIsSubmitted(true)
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+      setIsSubmitted(false)
+    }, 3000)
   }
 
   const handleChange = (e) => {
@@ -157,13 +184,20 @@ const ContactForm = () => {
                 ></textarea>
               </div>
 
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-red-600 to-neon-pink text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 neon-border animate-glow group"
-              >
-                <span>Send Message</span>
-                <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-              </button>
+              {isSubmitted ? (
+                <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6 text-center">
+                  <div className="text-green-400 text-lg font-semibold mb-2">✓ Message Sent Successfully!</div>
+                  <p className="text-gray-300 text-sm">We'll get back to you soon.</p>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-red-600 to-neon-pink text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 neon-border animate-glow group"
+                >
+                  <span>Send Message</span>
+                  <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </button>
+              )}
             </form>
           </div>
         </div>
