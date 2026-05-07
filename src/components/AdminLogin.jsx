@@ -123,15 +123,6 @@ const AdminLogin = ({ onLogin }) => {
             </button>
           </form>
 
-          {/* Info Box */}
-          <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-            <p className="text-blue-300 text-sm">
-              <strong>Default Credentials:</strong><br />
-              Username: <code className="bg-white/10 px-2 py-0.5 rounded">admin</code><br />
-              Password: <code className="bg-white/10 px-2 py-0.5 rounded">styloops2026</code>
-            </p>
-          </div>
-
           {/* Back to Home */}
           <div className="mt-6 text-center">
             <button
