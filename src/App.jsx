@@ -11,11 +11,19 @@ import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import Cart from './components/Cart'
 import AdminDashboard from './components/AdminDashboard'
+import AdminLogin from './components/AdminLogin'
 
 function App() {
   const [bgColor, setBgColor] = useState('#000000')
   const { scrollYProgress } = useScroll()
   const [showAdmin, setShowAdmin] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    const isAuth = sessionStorage.getItem('styloops-admin-auth') === 'true'
+    setIsAuthenticated(isAuth)
+  }, [])
 
   useEffect(() => {
     // Check if URL contains #admin
@@ -24,6 +32,9 @@ function App() {
         setShowAdmin(true)
       } else {
         setShowAdmin(false)
+        // Clear auth when leaving admin page
+        sessionStorage.removeItem('styloops-admin-auth')
+        setIsAuthenticated(false)
       }
     }
     
@@ -59,8 +70,11 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Show admin dashboard if URL is /admin or #admin
+  // Show admin login or dashboard if URL is #admin
   if (showAdmin) {
+    if (!isAuthenticated) {
+      return <AdminLogin onLogin={() => setIsAuthenticated(true)} />
+    }
     return (
       <>
         <AdminDashboard />

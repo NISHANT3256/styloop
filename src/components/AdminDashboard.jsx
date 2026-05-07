@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Package, User, Mail, Phone, MapPin, Calendar, Download, Trash2, CheckCircle, Clock, Home } from 'lucide-react'
+import { Package, User, Mail, Phone, MapPin, Calendar, Download, Trash2, CheckCircle, Clock, Home, LogOut } from 'lucide-react'
 
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([])
   const [selectedOrder, setSelectedOrder] = useState(null)
+
+  const handleLogout = () => {
+    if (window.confirm('Are you sure you want to logout?')) {
+      sessionStorage.removeItem('styloops-admin-auth')
+      window.location.hash = ''
+    }
+  }
 
   useEffect(() => {
     loadOrders()
@@ -53,6 +60,13 @@ const AdminDashboard = () => {
               <p className="text-gray-400">Manage your Styloops orders</p>
             </div>
             <div className="flex gap-3">
+              <button
+                onClick={handleLogout}
+                className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
+              >
+                <LogOut className="w-5 h-5" />
+                Logout
+              </button>
               <button
                 onClick={() => window.location.hash = ''}
                 className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
